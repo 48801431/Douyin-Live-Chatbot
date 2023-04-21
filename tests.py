@@ -1,1 +1,25 @@
-创建了一个 TestChatGPTClient 类，并在 setUp 方法中初始化了 ChatGPTClient 实例和模拟响应对象。在 test_generate_reply_success 方法中，我们使用 unittest.mock.patch 来模拟 requests.post 函数的返回值，以测试 generate_reply 方法是否能够正确地处理 API 响应并返回正确的回复消息。在 test_generate_reply_error 方法中，我们测试当输入的提示信息为空时，generate_reply 方法能否正确地处理错误并返回 None。
+import unittest
+from unittest.mock import MagicMock
+from app import ChatGPTClient
+
+class TestChatGPTClient(unittest.TestCase):
+    def setUp(self):
+        self.client = ChatGPTClient('api_key', 'api_secret')
+        self.mock_response = MagicMock()
+        self.mock_response.status_code = 200
+        self.mock_response.json.return_value = {
+            'choices': [{'text': 'Hello, how can I help you?'}]
+        }
+
+    def test_generate_reply_success(self):
+        with unittest.mock.patch('requests.post', return_value=self.mock_response):
+            reply = self.client.generate_reply('Hi')
+            self.assertEqual(reply, 'Hello, how can I help you?')
+
+    def test_generate_reply_error(self):
+        with unittest.mock.patch('requests.post', return_value=self.mock_response):
+            reply = self.client.generate_reply('')
+            self.assertIsNone(reply)
+
+if __name__ == '__main__':
+    unittest.main()
