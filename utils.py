@@ -1,0 +1,1 @@
+在上述代码中，我们创建了一个 ChatGPTClient 类，用于调用 ChatGPT 接口生成回复消息。在 __init__ 方法中，我们保存了 API 密钥和密钥，并指定了 ChatGPT 的 API 接口地址。在 generate_reply 方法中，我们使用 requests 库向 ChatGPT API 发送 POST 请求，并将请求参数和请求头进行了适当的设置。最后，我们从响应中提取回复消息，并返回给调用者。
