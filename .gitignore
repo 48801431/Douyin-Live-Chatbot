@@ -1,1 +1,21 @@
-上述 .gitignore 文件中，我们忽略了 Python 项目中的一些常见文件和目录，例如 Python 缓存文件、打包文件、日志文件等。同时，我们也忽略了一些常见的 IDE 相关文件和目录，例如 Visual Studio Code 和 PyCharm 的相关配置文件。最后，我们还忽略了一些常见的临时文件和系统文件，例如环境变量文件和 macOS 的 .DS_Store 文件。
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+
+# Other
+*.env
+*.log
+*.swp
+.DS_Store
